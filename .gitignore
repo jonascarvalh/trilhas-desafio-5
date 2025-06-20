@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Test coverage (caso use Jest, Vitest)
+coverage/
+
+# Env files (caso use variáveis de ambiente)
+.env.local
+.env.*.local
+.env
+
+# Storybook (caso use)
+storybook-static/
+
+# Cache do Vite (opcional, geralmente local)
+.vite/
+
+# Cache do TypeScript (opcional)
+*.tsbuildinfo
