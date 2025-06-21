@@ -1,0 +1,287 @@
+.mainSection {
+    background-color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 60vh;
+    margin: 2rem auto;
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.preTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 2.5rem;
+    color: var(--color-background);
+}
+
+.mainTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 4rem;
+    color: var(--color-secondary);
+}
+
+.mainDescription {
+    font-family: 'Inter', sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    max-width: 600px;
+    margin: 1rem 0;
+}
+
+.mainButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-top: 1.125rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.motivationSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.motivationTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.motivationSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    text-align: center;
+}
+
+.motivationCards {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1440px;
+    padding: 1rem;
+}
+
+.motivationCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 380px;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.motivationCardTitle {
+    margin-top: 2rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    text-align: center;
+}
+
+@media (max-width: 1440px) {
+    .motivationCards {
+        max-width: 1000px;
+    }
+}
+
+/* Responsividade para Notebooks */
+@media (max-width: 1024px) {
+    .mainSection {
+        width: 95%;
+        padding: 2.5rem 1rem;
+    }
+
+    .preTitle {
+        font-size: 2.2rem;
+    }
+
+    .mainTitle {
+        font-size: 3.5rem;
+    }
+
+    .mainDescription {
+        font-size: 1.2rem;
+        max-width: 550px;
+    }
+
+    .motivationTitle {
+        font-size: 2.2rem;
+    }
+
+    .motivationSubtitle {
+        font-size: 1.15rem;
+    }
+
+    .motivationCards {
+        gap: 1.5rem;
+        padding: 0 1rem;
+        max-width: 768px;
+    }
+
+    .motivationCard {
+        width: 280px;
+        height: 320px;
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+    .mainSection {
+        width: 95%;
+        height: auto;
+        min-height: 50vh;
+        padding: 3rem 1rem;
+    }
+
+    .preTitle {
+        font-size: 2rem;
+    }
+
+    .mainTitle {
+        font-size: 3rem;
+    }
+
+    .mainDescription {
+        font-size: 1.1rem;
+        max-width: 500px;
+    }
+
+    .motivationTitle {
+        font-size: 2rem;
+    }
+
+    .motivationSubtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+
+    .motivationCards {
+        gap: 1.5rem;
+        padding: 0 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .motivationCard {
+        width: 280px;
+        height: 200px;
+        margin-bottom: 1rem;
+    }
+
+    .motivationCardTitle {
+        font-size: 1rem;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 480px) {
+    .mainSection {
+        width: 98%;
+        margin: 1rem auto;
+        padding: 2rem 0.5rem;
+    }
+
+    .preTitle {
+        font-size: 1.5rem;
+    }
+
+    .mainTitle {
+        font-size: 2.5rem;
+    }
+
+    .mainDescription {
+        font-size: 1rem;
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+
+    .mainButton {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .motivationSection {
+        padding: 1rem 0.5rem;
+    }
+
+    .motivationTitle {
+        font-size: 1.8rem;
+    }
+
+    .motivationSubtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .motivationCards {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .motivationCard {
+        width: 280px;
+        height: 200px;
+        margin-bottom: 1rem;
+    }
+
+    .motivationCardTitle {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 320px) {
+    .mainSection {
+        padding: 1.5rem 0.25rem;
+    }
+
+    .preTitle {
+        font-size: 1.3rem;
+    }
+
+    .mainTitle {
+        font-size: 2rem;
+    }
+
+    .mainDescription {
+        font-size: 0.9rem;
+    }
+
+    .motivationCard {
+        width: 250px;
+        height: 180px;
+    }
+}

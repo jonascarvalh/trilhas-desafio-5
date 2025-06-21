@@ -1,0 +1,94 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-background);
+    text-decoration: none;
+}
+
+.menuIcon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav a {
+    margin: 0 1rem;
+    color: var(--color-background);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+a {
+    color: var(--color-background);
+}
+
+.button {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navButton {
+    display: none;
+}
+
+.desktopButton {
+    /* This class is used to hide the button on mobile */
+}
+
+@media (max-width: 768px) {
+    .menuIcon {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #2D2D2D;
+        padding: 1rem 0;
+        z-index: 10;
+    }
+
+    .navOpen {
+        display: flex;
+    }
+
+    .nav a {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .desktopButton {
+        display: none;
+    }
+    
+    .navButton {
+        display: block;
+        margin: 1rem auto;
+    }
+}
