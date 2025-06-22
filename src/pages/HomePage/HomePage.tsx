@@ -19,8 +19,8 @@ const HomePage: React.FC = () => {
       </section>
 
       <section className={styles.motivationSection}>
-        <h2 className={styles.motivationTitle}>Motivação</h2>
-        <h3 className={styles.motivationSubtitle}>Por que isso é tão importante?</h3>
+        <h2 className={styles.sectionTitle}>Motivação</h2>
+        <h3 className={styles.sectionSubtitle}>Por que isso é tão importante?</h3>
 
         <div className={styles.motivationCards}>
           <div className={styles.motivationCard}>
@@ -44,6 +44,47 @@ const HomePage: React.FC = () => {
           </div>
         </div>
         
+      </section>
+
+      <section className={styles.stepByStepSection}>
+        <h2 className={styles.sectionTitle}>Passo a Passo</h2>
+        <h3 className={styles.sectionSubtitle}>Aprenda de forma prática e gamificada.</h3>
+
+        <div className={styles.stepByStepCards}>
+          <div className={styles.stepByStepCardGroup}>
+            <div className={styles.stepByStepCard}><p>1. Leia Artigos</p></div>
+            <div className={styles.stepByStepCard}><p>2. Responda ás perguntas.</p></div>
+          </div>
+          <div className={styles.stepByStepCardGroup}>
+            <div className={styles.stepByStepCard}><p>3. Ganhe XP e insígnias.</p></div>
+            <div className={styles.stepByStepCard}><p>4. Melhore seu currículo e suas chances no mercado.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.recentContentSection}>
+        <h2 className={styles.sectionTitle}>Conteúdo Recente</h2>
+        <h3 className={styles.sectionSubtitle}>Últimos conteúdos lançados na plataforma.</h3>
+
+        <div className={styles.recentContentCards}>
+          <div className={styles.recentContentCard}>
+            <p className={styles.recentContentCardTitle}>Entendendo a IA</p>
+            <a className={styles.recentContentCardLink} href="#">Acessar</a>
+          </div>
+          <div className={styles.recentContentCard}>
+            <p className={styles.recentContentCardTitle}>IA na Rotina</p>
+            <a className={styles.recentContentCardLink} href="#">Acessar</a>
+          </div>
+          <div className={styles.recentContentCard}>
+            <p className={styles.recentContentCardTitle}>Empreender com IA</p>
+            <a className={styles.recentContentCardLink} href="#">Acessar</a>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.footerSection}>
+        <p className={styles.footerText}>Projeto fictício e sem fins comerciais. Imagens adquiridas na internet e/ou geradas por IA.</p>
+        <p className={styles.footerText}>Desenvolvido para um projeto do Trilhas 2B.</p>
       </section>
     </div>
   );

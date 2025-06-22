@@ -60,7 +60,7 @@
     padding: 2rem 1rem;
 }
 
-.motivationTitle {
+.sectionTitle {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     color: var(--color-secondary);
@@ -68,7 +68,7 @@
     text-align: center;
 }
 
-.motivationSubtitle {
+.sectionSubtitle {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     color: var(--color-primary);
@@ -108,6 +108,95 @@
     text-align: center;
 }
 
+.stepByStepCards {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-bottom: 3.125rem;
+}
+
+.stepByStepCardGroup {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.stepByStepCard {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    text-align: left;
+    background-color: var(--color-primary);
+    width: 620px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 10px;
+}
+
+.stepByStepCard p {
+    margin-left: 2.5rem;
+}
+
+.recentContentCards {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.recentContentCard {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    color: var(--color-background);
+    text-align: left;
+    background-color: var(--color-primary);
+    width: 320px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.recentContentCardLink {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-top: 1.125rem;
+}
+
+.footerSection {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--color-primary);
+    width: 100%;
+    height: 150px;
+    margin-top: 2rem;
+}
+
+.footerText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5rem;
+    color: var(--color-background);
+}
+
 @media (max-width: 1440px) {
     .motivationCards {
         max-width: 1000px;
@@ -134,11 +223,11 @@
         max-width: 550px;
     }
 
-    .motivationTitle {
+    .sectionTitle {
         font-size: 2.2rem;
     }
 
-    .motivationSubtitle {
+    .sectionSubtitle {
         font-size: 1.15rem;
     }
 
@@ -151,6 +240,35 @@
     .motivationCard {
         width: 280px;
         height: 320px;
+    }
+
+    .stepByStepCardGroup {
+        gap: 2rem;
+    }
+
+    .stepByStepCard {
+        width: 500px;
+        height: 90px;
+        font-size: 1.1rem;
+    }
+
+    .stepByStepCard p {
+        margin-left: 2rem;
+    }
+
+    .recentContentCards {
+        max-width: 1024px;
+        flex-wrap: wrap;
+    }
+
+    .footerSection {
+        height: auto;
+        padding: 2rem 1rem;
+    }
+
+    .footerText {
+        font-size: 1rem;
+        text-align: center;
     }
 }
 
@@ -176,11 +294,11 @@
         max-width: 500px;
     }
 
-    .motivationTitle {
+    .sectionTitle {
         font-size: 2rem;
     }
 
-    .motivationSubtitle {
+    .sectionSubtitle {
         font-size: 1.1rem;
         margin-bottom: 2rem;
     }
@@ -200,6 +318,43 @@
 
     .motivationCardTitle {
         font-size: 1rem;
+    }
+
+    .stepByStepCards {
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .stepByStepCardGroup {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .stepByStepCard {
+        width: 90%;
+        max-width: 400px;
+        height: 80px;
+        font-size: 1rem;
+    }
+
+    .stepByStepCard p {
+        margin-left: 1.5rem;
+    }
+
+    .recentContentCards {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .recentContentCard {
+        width: 90%;
+        max-width: 400px;
+        height: 200px;
+    }
+
+    .footerText {
+        font-size: 0.9rem;
     }
 }
 
@@ -234,11 +389,11 @@
         padding: 1rem 0.5rem;
     }
 
-    .motivationTitle {
+    .sectionTitle {
         font-size: 1.8rem;
     }
 
-    .motivationSubtitle {
+    .sectionSubtitle {
         font-size: 1rem;
         margin-bottom: 1.5rem;
         padding: 0 1rem;
@@ -259,6 +414,49 @@
     .motivationCardTitle {
         font-size: 1rem;
         margin-top: 1rem;
+    }
+
+    .stepByStepCards {
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .stepByStepCardGroup {
+        flex-direction: column;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .stepByStepCard {
+        width: 95%;
+        height: 70px;
+        font-size: 0.9rem;
+    }
+
+    .stepByStepCard p {
+        margin-left: 1rem;
+    }
+
+    .recentContentCard {
+        width: 95%;
+        height: 180px;
+    }
+
+    .recentContentCardTitle {
+        font-size: 1.5rem;
+    }
+
+    .recentContentCardLink {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .footerSection {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .footerText {
+        font-size: 0.8rem;
     }
 }
 
@@ -283,5 +481,27 @@
     .motivationCard {
         width: 250px;
         height: 180px;
+    }
+
+    .stepByStepCard {
+        width: 98%;
+        height: 60px;
+        font-size: 0.8rem;
+    }
+
+    .stepByStepCard p {
+        margin-left: 0.75rem;
+    }
+
+    .recentContentCard {
+        height: 160px;
+    }
+
+    .recentContentCardTitle {
+        font-size: 1.2rem;
+    }
+
+    .recentContentCardLink {
+        font-size: 0.9rem;
     }
 }
