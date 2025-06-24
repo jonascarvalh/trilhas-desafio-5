@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from 'components/Header/Header';
+import Header from '../../components/Header/Header';
 import styles from './HomePage.module.css';
+
 import moneyLogo from 'assets/HomePage/money.png';
 import bookLogo from 'assets/HomePage/book.png';
 import computerLogo from 'assets/HomePage/computer.png';
