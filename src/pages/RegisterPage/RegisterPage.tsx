@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import styles from './RegisterPage.module.css';
 
 const RegisterPage: React.FC = () => {
@@ -45,6 +46,7 @@ const RegisterPage: React.FC = () => {
         </div>
 
       </div>
+      <Footer />
     </div>
   );
 };

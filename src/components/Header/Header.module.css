@@ -55,14 +55,8 @@ a {
     display: none;
 }
 
-.desktopButtons {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
 .desktopButton {
-    /* This class is used to hide the button on mobile */
+    /* Botão visível apenas em desktop */
 }
 
 @media (max-width: 768px) {
@@ -91,7 +85,7 @@ a {
         text-align: center;
     }
 
-    .desktopButtons {
+    .desktopButton {
         display: none;
     }
     

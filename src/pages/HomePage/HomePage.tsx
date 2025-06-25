@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 import styles from './HomePage.module.css';
 
 import moneyLogo from 'assets/HomePage/money.png';
@@ -83,10 +84,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className={styles.footerSection}>
-        <p className={styles.footerText}>Projeto fictício e sem fins comerciais. Imagens adquiridas na internet e/ou geradas por IA.</p>
-        <p className={styles.footerText}>Desenvolvido para um projeto do Trilhas 2B.</p>
-      </section>
+      <Footer />
     </div>
   );
 }
