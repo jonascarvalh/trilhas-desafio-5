@@ -11,10 +11,12 @@ const LoginPage: React.FC = () => {
         <div className={styles.loginContainer}>
           <h1 className={styles.loginTitle}>Entrar</h1>
           <form className={styles.loginForm}>
+
             <div className={styles.loginInput}>
               <p className={styles.loginLabel}>E-mail:</p>
               <input type="email" placeholder='Digite seu e-mail' />
             </div>
+            
             <div className={styles.loginInput}>
               <p className={styles.loginLabel}>Senha:</p>
               <input type="password" placeholder='Digite sua senha' />
@@ -23,9 +25,9 @@ const LoginPage: React.FC = () => {
             <div className={styles.loginActions}>
               <button className={styles.loginButton}>Fazer Login</button>
               <p className={styles.helpText}>Não possui conta? 
-                <a href="#" className={styles.helpTextLink}>
+                <Link to="/register" className={styles.helpTextLink}>
                   <strong> Registre-se aqui</strong>
-                </a>
+                </Link>
               </p>
             </div>
 

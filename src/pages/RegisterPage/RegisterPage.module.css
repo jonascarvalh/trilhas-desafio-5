@@ -1,4 +1,4 @@
-.loginContainer {
+.registerContainer {
     background-color: var(--color-primary);
     display: flex;
     flex-direction: column;
@@ -10,14 +10,14 @@
     border-radius: 10px;
 }
 
-.loginPage {
+.registerPage {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.loginTitle {
+.registerTitle {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     color: var(--color-background);
@@ -26,7 +26,7 @@
     margin-bottom: 2rem;
 }
 
-.loginLabel {
+.registerLabel {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     color: var(--color-background);
@@ -47,11 +47,11 @@
     font-weight: 500;
 }
 
-.loginInput {
+.registerInput {
     width: 100%;
 }
 
-.loginActions {
+.registerActions {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,7 @@
     text-align: center;
 }
 
-.loginButton {
+.registerButton {
     width: 100%;
     background-color: var(--color-secondary);
     color: var(--color-background);
@@ -73,6 +73,7 @@
     height: 60px;
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -87,12 +88,13 @@ input[type="password"] {
     height: 60px;
 }
 
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     outline: none;
 }
 
-.loginForm {
+.registerForm {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -103,7 +105,7 @@ input[type="password"]:focus {
 
 /* Responsividade para Notebooks */
 @media (max-width: 1024px) {
-    .loginContainer {
+    .registerContainer {
         width: 95%;
         height: auto;
         min-height: 60vh;
@@ -111,12 +113,12 @@ input[type="password"]:focus {
         margin-top: 2rem;
     }
 
-    .loginTitle {
+    .registerTitle {
         font-size: 2.2rem;
         margin-bottom: 1.5rem;
     }
 
-    .loginLabel {
+    .registerLabel {
         font-size: 1.3rem;
     }
 
@@ -124,25 +126,26 @@ input[type="password"]:focus {
         font-size: 1.3rem;
     }
 
-    .loginButton {
+    .registerButton {
         font-size: 1.3rem;
         height: 55px;
     }
 
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
         font-size: 1.3rem;
         height: 55px;
     }
 
-    .loginForm {
+    .registerForm {
         width: 60%;
     }
 }
 
 /* Responsividade para tablets */
 @media (max-width: 768px) {
-    .loginContainer {
+    .registerContainer {
         width: 95%;
         height: auto;
         min-height: 50vh;
@@ -150,12 +153,12 @@ input[type="password"]:focus {
         margin-top: 1.5rem;
     }
 
-    .loginTitle {
+    .registerTitle {
         font-size: 2rem;
         margin-bottom: 1.5rem;
     }
 
-    .loginLabel {
+    .registerLabel {
         font-size: 1.2rem;
     }
 
@@ -164,37 +167,38 @@ input[type="password"]:focus {
         margin-top: 1.5rem;
     }
 
-    .loginButton {
+    .registerButton {
         font-size: 1.2rem;
         height: 50px;
     }
 
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
         font-size: 1.2rem;
         height: 50px;
     }
 
-    .loginForm {
+    .registerForm {
         width: 80%;
     }
 }
 
 /* Responsividade para dispositivos móveis */
 @media (max-width: 480px) {
-    .loginContainer {
+    .registerContainer {
         width: 98%;
         margin: 1rem auto;
         padding: 2rem 0.5rem;
         min-height: 45vh;
     }
 
-    .loginTitle {
+    .registerTitle {
         font-size: 1.8rem;
         margin-bottom: 1rem;
     }
 
-    .loginLabel {
+    .registerLabel {
         font-size: 1rem;
     }
 
@@ -203,12 +207,13 @@ input[type="password"]:focus {
         margin-top: 1rem;
     }
 
-    .loginButton {
+    .registerButton {
         font-size: 1rem;
         height: 45px;
         padding: 0.4rem 0.8rem;
     }
 
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
         font-size: 1rem;
@@ -216,7 +221,7 @@ input[type="password"]:focus {
         padding: 0.4rem 0.8rem;
     }
 
-    .loginForm {
+    .registerForm {
         width: 90%;
         gap: 0.8rem;
     }
@@ -224,16 +229,16 @@ input[type="password"]:focus {
 
 /* Responsividade para telas muito pequenas */
 @media (max-width: 320px) {
-    .loginContainer {
+    .registerContainer {
         padding: 1.5rem 0.25rem;
         min-height: 40vh;
     }
 
-    .loginTitle {
+    .registerTitle {
         font-size: 1.5rem;
     }
 
-    .loginLabel {
+    .registerLabel {
         font-size: 0.9rem;
     }
 
@@ -241,18 +246,19 @@ input[type="password"]:focus {
         font-size: 0.9rem;
     }
 
-    .loginButton {
+    .registerButton {
         font-size: 0.9rem;
         height: 40px;
     }
 
+    input[type="text"],
     input[type="email"],
     input[type="password"] {
         font-size: 0.9rem;
         height: 40px;
     }
 
-    .loginForm {
+    .registerForm {
         width: 95%;
     }
-}
+} 

@@ -47,10 +47,18 @@ a {
     font-size: 1rem;
     cursor: pointer;
     font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .navButton {
     display: none;
+}
+
+.desktopButtons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 .desktopButton {
@@ -83,7 +91,7 @@ a {
         text-align: center;
     }
 
-    .desktopButton {
+    .desktopButtons {
         display: none;
     }
     
