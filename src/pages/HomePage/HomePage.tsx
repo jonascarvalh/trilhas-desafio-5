@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
         <a className={styles.mainButton} href="#">Entenda como Funciona</a>
       </section>
 
-      <section className={styles.motivationSection}>
+      <section className={styles.motivationSection} id="motivation">
         <h2 className={styles.sectionTitle}>Motivação</h2>
         <h3 className={styles.sectionSubtitle}>Por que isso é tão importante?</h3>
 
@@ -48,7 +48,7 @@ const HomePage: React.FC = () => {
         
       </section>
 
-      <section className={styles.stepByStepSection}>
+      <section className={styles.stepByStepSection} id="steps">
         <h2 className={styles.sectionTitle}>Passo a Passo</h2>
         <h3 className={styles.sectionSubtitle}>Aprenda de forma prática e gamificada.</h3>
 
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className={styles.recentContentSection}>
+      <section className={styles.recentContentSection} id="content">
         <h2 className={styles.sectionTitle}>Conteúdo Recente</h2>
         <h3 className={styles.sectionSubtitle}>Últimos conteúdos lançados na plataforma.</h3>
 

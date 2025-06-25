@@ -34,6 +34,17 @@
     font-size: 1rem;
 }
 
+.navLink {
+    margin: 0 1rem;
+    color: var(--color-background);
+    text-decoration: none;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
 a {
     color: var(--color-background);
 }
@@ -81,6 +92,11 @@ a {
     }
 
     .nav a {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .navLink {
         margin: 1rem 0;
         text-align: center;
     }
