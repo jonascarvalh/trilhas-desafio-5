@@ -1,0 +1,52 @@
+.sectionTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.sectionSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    text-align: center;
+}
+
+.articleDetailViewContent {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    text-align: justify;
+}
+
+.articleDetailViewSection {
+    padding: 5.5rem 17rem;
+}
+
+.backButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    background-color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 2rem;
+    display: block;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    width: 345px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.backButton:hover {
+    opacity: 0.8;
+}

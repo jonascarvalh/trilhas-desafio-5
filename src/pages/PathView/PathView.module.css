@@ -1,0 +1,63 @@
+.sectionTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.sectionSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    text-align: center;
+}
+
+.pathViewSection {
+    padding: 5.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pathViewCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pathViewCard {
+    width: 620px;
+    height: 100px;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    color: var(--color-background);
+}
+
+.articleTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-left: 2rem;
+}
+
+.pathViewButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
