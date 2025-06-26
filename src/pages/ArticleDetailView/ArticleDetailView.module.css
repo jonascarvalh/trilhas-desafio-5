@@ -50,3 +50,109 @@
 .backButton:hover {
     opacity: 0.8;
 }
+
+/* Responsividade para Notebooks */
+@media (max-width: 1024px) {
+    .articleDetailViewSection {
+        padding: 4rem 3rem;
+    }
+
+    .sectionTitle {
+        font-size: 2.2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .articleDetailViewContent {
+        font-size: 1.1rem;
+    }
+
+    .backButton {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.8rem;
+        width: 300px;
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+    .articleDetailViewSection {
+        padding: 3rem 2rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .articleDetailViewContent {
+        font-size: 1rem;
+    }
+
+    .backButton {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+        width: 280px;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 480px) {
+    .articleDetailViewSection {
+        padding: 2rem 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .articleDetailViewContent {
+        font-size: 0.9rem;
+    }
+
+    .backButton {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+        width: 250px;
+        margin-top: 1.5rem;
+    }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 320px) {
+    .articleDetailViewSection {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.6rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .articleDetailViewContent {
+        font-size: 0.8rem;
+    }
+
+    .backButton {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+        width: 220px;
+        margin-top: 1rem;
+    }
+}
