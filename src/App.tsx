@@ -7,6 +7,9 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import Paths from './pages/Paths/Paths';
 import PathView from './pages/PathView/PathView';
 import ArticleDetailView from './pages/ArticleDetailView/ArticleDetailView';
+import QuestionsMenu from './pages/QuestionsMenu/QuestionsMenu';
+import QuestionsEnd from './pages/QuestionsEnd/QuestionsEnd';
+import QuestionsGame from './pages/QuestionsGame/QuestionsGame';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +22,9 @@ const App: React.FC = () => {
         <Route path="/paths" element={<Paths />} />
         <Route path="/path-view" element={<PathView />} />
         <Route path="/article-detail-view" element={<ArticleDetailView />} />
+        <Route path="/questions-menu" element={<QuestionsMenu />} />
+        <Route path="/questions-end" element={<QuestionsEnd/>} />
+        <Route path="/questions-game" element={<QuestionsGame/>} />
       </Routes>
     </Router>
   );
