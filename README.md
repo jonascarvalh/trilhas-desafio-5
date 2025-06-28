@@ -1,54 +1,98 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Trilhas - Desafio 5 🚀
 
-Currently, two official plugins are available:
+Projeto front-end desenvolvido com **React + TypeScript + Vite**, com foco em arquitetura escalável, componentização, reutilização de código e boas práticas modernas. Essa aplicação serve como base para navegação entre trilhas de conteúdo e artigos, simulando um ambiente dinâmico e responsivo para usuários.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📚 Descrição
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Este repositório é parte do Desafio 5 da Trilha Front-End. Seu objetivo é demonstrar domínio em:
+- Estruturação de SPA (Single Page Application) com React
+- Organização modular de componentes
+- Utilização de boas práticas com TypeScript, CSS Modules e Hooks personalizados
+- Gerenciamento de rotas com React Router
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🧱 Arquitetura do Projeto
+
+A aplicação segue um padrão de organização baseado em **responsabilidades separadas por pasta**:
+
+```
+src/
+ ┣ assets/          # Imagens e ícones
+ ┣ components/      # Componentes reutilizáveis (ex: Header, Footer, ContentCard)
+ ┣ hooks/           # Hooks customizados
+ ┣ pages/           # Páginas como LoginPage, HomePage, etc.
+ ┣ services/        # Integrações com API
+ ┣ store/           # (Futuro) estado global com Zustand ou Redux
+ ┣ types/           # Interfaces e tipos globais
+ ┣ utils/           # Funções utilitárias
+ ┣ App.tsx          # Definição de rotas
+ ┗ main.tsx         # Entrada principal do app
+```
+---
+
+## ✅ Funcionalidades
+
+- [x] SPA com navegação por rotas (react-router-dom)
+- [x] Login e Cadastro com validações
+- [x] Exibição de trilhas e artigos
+- [x] Componentes reaproveitáveis
+- [x] Layout responsivo com CSS Modules
+
+---
+
+## 🧠 Boas Práticas Adotadas
+
+- ✅ Componentes com responsabilidade única
+- ✅ Tipagem completa com TypeScript
+- ✅ Estilos isolados com CSS Modules
+- ✅ Hooks customizados para lógica compartilhada
+- ✅ Estrutura clara e modular (por camadas)
+- ✅ ESLint + Prettier para padronização de código
+
+---
+
+## 📦 Principais Dependências
+
+- `react` / `react-dom`
+- `typescript`
+- `vite`
+- `react-router-dom`
+- `eslint`, `prettier`
+- `@types/react`, `@types/node`
+
+---
+
+## ❗ Tratativas de Erro
+
+- Validação de campos obrigatórios em formulários
+- Verificação de senha e confirmação
+- Navegação segura com rotas protegidas
+- Boas práticas de organização para evitar falhas de execução
+- (Página 404 ainda não implementada)
+
+---
+
+## 🤝 Contribuições
+
+Formato de mensagem de commit padrão:
+
+```
+📦 Tipo: natureza do commit (obrigatório)
+📝 Escopo: sempre "trilhas" ou nome do módulo
+🔢 Numeração: número da tarefa no Trello + breve descrição
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Tipos de Commit
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ✨ `feature`: Nova funcionalidade
+- 🐛 `bugfix`: Correção de erro
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## 📌 Status do Projeto
+
+🔧 Em desenvolvimento  
+📤 Deploy: ainda não publicado   

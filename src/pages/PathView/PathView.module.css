@@ -1,0 +1,189 @@
+.sectionTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.sectionSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    text-align: center;
+}
+
+.pathViewSection {
+    padding: 5.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pathViewCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pathViewCard {
+    width: 620px;
+    height: 100px;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+    color: var(--color-background);
+}
+
+.articleTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-left: 2rem;
+}
+
+.pathViewButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+
+/* Responsividade para Notebooks */
+@media (max-width: 1024px) {
+    .pathViewSection {
+        padding: 4rem 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 2.2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .pathViewCards {
+        width: 80%;
+    }
+
+    .pathViewCard {
+        width: 100%;
+    }
+
+    .articleTitle {
+        font-size: 1.1rem;
+        margin-left: 1.5rem;
+    }
+
+    .pathViewButton {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.8rem;
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+    .pathViewSection {
+        padding: 3rem 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .articleTitle {
+        font-size: 1rem;
+        margin-left: 1.2rem;
+    }
+
+    .pathViewButton {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 480px) {
+    .pathViewSection {
+        padding: 2rem 0.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .pathViewCard {
+        width: 98%;
+        max-width: 400px;
+        height: 70px;
+        margin-bottom: 0.6rem;
+    }
+
+    .articleTitle {
+        font-size: 0.9rem;
+        margin-left: 1rem;
+    }
+
+    .pathViewButton {
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 320px) {
+    .pathViewSection {
+        padding: 1.5rem 0.25rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.6rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .pathViewCard {
+        width: 99%;
+        max-width: 300px;
+        height: 60px;
+        margin-bottom: 0.5rem;
+    }
+
+    .articleTitle {
+        font-size: 0.8rem;
+        margin-left: 0.8rem;
+    }
+
+    .pathViewButton {
+        font-size: 0.8rem;
+        padding: 0.6rem 1rem;
+    }
+}

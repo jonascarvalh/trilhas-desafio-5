@@ -8,19 +8,15 @@ const Header: React.FC = () => {
     const location = useLocation();
 
     const handleSectionClick = (sectionId: string) => {
-        // Fecha o menu mobile se estiver aberto
         setMenuOpen(false);
         
-        // Se já estamos na home page, apenas rola para a seção
         if (location.pathname === '/') {
             const element = document.getElementById(sectionId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
         } else {
-            // Se não estamos na home page, navega para lá e depois rola
             navigate('/');
-            // Aguarda um pouco para a navegação acontecer antes de rolar
             setTimeout(() => {
                 const element = document.getElementById(sectionId);
                 if (element) {

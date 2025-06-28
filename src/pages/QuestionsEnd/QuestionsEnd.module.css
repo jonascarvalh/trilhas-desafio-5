@@ -1,0 +1,166 @@
+.questionsEndSection {
+    padding: 15rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sectionTitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--color-secondary);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.sectionSubtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    margin-bottom: 3.125rem;
+    text-align: center;
+}
+
+.xpContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.xpText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    color: var(--color-secondary);
+}
+
+.xpDescription {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Responsividade para telas grandes */
+@media (max-width: 1440px) {
+    .questionsEndSection {
+        padding: 12rem 0;
+    }
+}
+
+/* Responsividade para Notebooks */
+@media (max-width: 1024px) {
+    .questionsEndSection {
+        padding: 10rem 0;
+    }
+
+    .sectionTitle {
+        font-size: 2.2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .xpText {
+        font-size: 3.5rem;
+    }
+
+    .xpDescription {
+        font-size: 1.1rem;
+    }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+    .questionsEndSection {
+        padding: 8rem 0;
+    }
+
+    .sectionTitle {
+        font-size: 2rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .xpContainer {
+        gap: 0.8rem;
+    }
+
+    .xpText {
+        font-size: 3rem;
+    }
+
+    .xpDescription {
+        font-size: 1rem;
+        margin-top: 0.8rem;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 480px) {
+    .questionsEndSection {
+        padding: 6rem 0;
+    }
+
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .xpContainer {
+        gap: 0.6rem;
+    }
+
+    .xpText {
+        font-size: 2.5rem;
+    }
+
+    .xpDescription {
+        font-size: 0.9rem;
+        margin-top: 0.6rem;
+    }
+}
+
+/* Responsividade para dispositivos muito pequenos */
+@media (max-width: 320px) {
+    .questionsEndSection {
+        padding: 4rem 0;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .sectionSubtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .xpContainer {
+        gap: 0.5rem;
+    }
+
+    .xpText {
+        font-size: 2rem;
+    }
+
+    .xpDescription {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+}

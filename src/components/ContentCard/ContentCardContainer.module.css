@@ -1,0 +1,21 @@
+.recentContentCards {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .recentContentCards {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .recentContentCards {
+        gap: 1rem;
+        flex-direction: column;
+    }
+} 
