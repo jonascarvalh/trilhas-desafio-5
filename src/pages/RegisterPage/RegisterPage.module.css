@@ -103,6 +103,15 @@ input[type="password"]:focus {
     width: 50%;
 }
 
+.registerError {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: red;
+  margin-top: 0.5rem;
+}
+
+
 /* Responsividade para Notebooks */
 @media (max-width: 1024px) {
     .registerContainer {
@@ -261,4 +270,6 @@ input[type="password"]:focus {
     .registerForm {
         width: 95%;
     }
+   
+
 } 

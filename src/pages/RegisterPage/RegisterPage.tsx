@@ -1,54 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import styles from './RegisterPage.module.css';
 
 const RegisterPage: React.FC = () => {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [confirmarSenha, setConfirmarSenha] = useState('');
+  const [erro, setErro] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!nome.trim() || !email.trim() || !senha.trim() || !confirmarSenha.trim()) {
+      setErro('Por favor, preencha todos os campos.');
+      return;
+    }
+
+    if (senha !== confirmarSenha) {
+      setErro('As senhas não coincidem.');
+      return;
+    }
+
+    
+  };
+
   return (
     <div>
       <Header />
       <div className={styles.registerPage}>
         <div className={styles.registerContainer}>
           <h1 className={styles.registerTitle}>Registro</h1>
-          <form className={styles.registerForm}>
-
+          <form className={styles.registerForm} onSubmit={handleSubmit}>
             <div className={styles.registerInput}>
               <p className={styles.registerLabel}>Nome:</p>
-              <input type="text" placeholder='Digite seu nome completo' />
+              <input
+                type="text"
+                placeholder="Digite seu nome completo"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
             </div>
 
             <div className={styles.registerInput}>
               <p className={styles.registerLabel}>E-mail:</p>
-              <input type="email" placeholder='Digite seu e-mail' />
+              <input
+                type="email"
+                placeholder="Digite seu e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            
+
             <div className={styles.registerInput}>
               <p className={styles.registerLabel}>Senha:</p>
-              <input type="password" placeholder='Digite sua senha' />
+              <input
+                type="password"
+                placeholder="Digite sua senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+              />
             </div>
 
             <div className={styles.registerInput}>
               <p className={styles.registerLabel}>Confirme sua Senha:</p>
-              <input type="password" placeholder='Confirme sua senha' />
+              <input
+                type="password"
+                placeholder="Confirme sua senha"
+                value={confirmarSenha}
+                onChange={(e) => setConfirmarSenha(e.target.value)}
+              />
             </div>
 
+            {erro && <p className={styles.registerError}>{erro}</p>}
+
+
             <div className={styles.registerActions}>
-              <button className={styles.registerButton}>Realizar Registro</button>
-              <p className={styles.helpText}>Já possui conta? 
+              <button className={styles.registerButton} type="submit">
+                Realizar Registro
+              </button>
+              <p className={styles.helpText}>
+                Já possui conta?{' '}
                 <Link to="/login" className={styles.helpTextLink}>
                   <strong> Entre aqui</strong>
                 </Link>
               </p>
             </div>
-
           </form>
         </div>
-
       </div>
       <Footer />
     </div>
   );
 };
 
-export default RegisterPage; 
+export default RegisterPage;
