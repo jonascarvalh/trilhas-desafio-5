@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import { register } from '../../services/authService';  // Certifique-se de importar a função de registro
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -10,29 +11,37 @@ const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
-  const [erro, setErro] = useState('');
   const navigate = useNavigate();  // Hook para navegação após registro
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!nome.trim() || !email.trim() || !senha.trim() || !confirmarSenha.trim()) {
-      setErro('Por favor, preencha todos os campos.');
+      toast.error('Por favor, preencha todos os campos.');
       return;
     }
 
     if (senha !== confirmarSenha) {
-      setErro('As senhas não coincidem.');
+      toast.error('As senhas não coincidem.');
       return;
     }
 
     try {
+      // Mostrar toast de carregamento
+      toast.loading('Registrando usuário...', {
+        duration: 2000,
+      });
+      
       // Envia os dados de registro para o servidor
       await register(email, senha, nome);
+      
+      // Toast de sucesso
+      toast.success('Usuário registrado com sucesso!');
+      
       // Se o registro for bem-sucedido, redireciona para a página de login
       navigate('/login');
     } catch (error) {
-      setErro('Erro ao registrar usuário');
+      toast.error('Erro ao registrar usuário');
     }
   };
 
@@ -82,8 +91,6 @@ const RegisterPage: React.FC = () => {
                 onChange={(e) => setConfirmarSenha(e.target.value)}
               />
             </div>
-
-            {erro && <p className={styles.registerError}>{erro}</p>}
 
             <div className={styles.registerActions}>
               <button className={styles.registerButton} type="submit">

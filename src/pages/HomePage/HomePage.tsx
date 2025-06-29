@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { ContentCardContainer } from '../../components/ContentCard';
 import styles from './HomePage.module.css';
+import { getArticles } from '../../services/articleService';
+import type { Article } from '../../services/articleService';
 
 import moneyLogo from 'assets/HomePage/money.png';
 import bookLogo from 'assets/HomePage/book.png';
@@ -10,29 +13,38 @@ import computerLogo from 'assets/HomePage/computer.png';
 import userLogo from 'assets/HomePage/user.png';
 
 const HomePage: React.FC = () => {
-    const recentContentItems = [
-        {
-            id: '1',
-            title: 'Entendendo a IA',
-            linkText: 'Acessar',
-            linkHref: '#',
-            onClick: () => console.log('Clicou em Entendendo a IA')
-        },
-        {
-            id: '2',
-            title: 'IA na Rotina',
-            linkText: 'Acessar',
-            linkHref: '#',
-            onClick: () => console.log('Clicou em IA na Rotina')
-        },
-        {
-            id: '3',
-            title: 'Empreender com IA',
-            linkText: 'Acessar',
-            linkHref: '#',
-            onClick: () => console.log('Clicou em Empreender com IA')
-        }
-    ];
+    const navigate = useNavigate();
+    const [articles, setArticles] = useState<Article[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const articlesData = await getArticles();
+                setArticles(articlesData);
+            } catch (err) {
+                setError('Erro ao carregar os artigos');
+                console.error('Erro ao buscar artigos:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchArticles();
+    }, []);
+
+    const handleArticleClick = (articleId: string) => {
+        console.log('Clicou no artigo:', articleId);
+        navigate(`/article/${articleId}`);
+    };
+
+    const recentContentItems = articles.map(article => ({
+        id: article.id.toString(),
+        title: article.title,
+        linkText: 'Acessar',
+        onClick: () => handleArticleClick(article.id.toString())
+    }));
 
     return (
     <div>
@@ -93,7 +105,9 @@ const HomePage: React.FC = () => {
         <h2 className={styles.sectionTitle}>Conteúdo Recente</h2>
         <h3 className={styles.sectionSubtitle}>Últimos conteúdos lançados na plataforma.</h3>
 
-        <ContentCardContainer items={recentContentItems} />
+        {loading && <p>Carregando...</p>}
+        {error && <p>Erro: {error}</p>}
+        {!loading && !error && <ContentCardContainer items={recentContentItems} />}
       </section>
 
       <Footer />

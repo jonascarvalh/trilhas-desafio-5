@@ -38,11 +38,16 @@
     margin-top: 1.125rem;
     text-decoration: none;
     display: inline-block;
+    outline: none;
 }
 
 .recentContentCardLink:hover {
     opacity: 0.9;
     transition: opacity 0.2s ease;
+}
+
+.recentContentCardLink:focus {
+    outline: none;
 }
 
 /* Responsividade */

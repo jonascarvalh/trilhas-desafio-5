@@ -36,19 +36,48 @@
     padding: 1rem 2rem;
     border-radius: 10px;
     text-decoration: none;
-    margin-top: 2rem;
     display: block;
     border: none;
     cursor: pointer;
     transition: opacity 0.2s ease;
     width: 345px;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .backButton:hover {
     opacity: 0.8;
+}
+
+.pathViewButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    outline: none;
+}
+
+.pathViewButton:hover {
+    opacity: 0.8;
+}
+
+.pathViewButton:focus {
+    outline: none;
+}
+
+.articleDetailViewButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 2rem 0;
 }
 
 /* Responsividade para Notebooks */

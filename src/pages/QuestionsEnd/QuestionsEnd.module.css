@@ -47,6 +47,54 @@
     margin-top: 1rem;
 }
 
+.failTitle {
+    color: #dc3545 !important;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.homeButton, .tryAgainButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    outline: none;
+    min-width: 180px;
+}
+
+.homeButton {
+    background-color: var(--color-primary);
+}
+
+.homeButton:hover {
+    background-color: var(--color-secondary);
+    opacity: 0.9;
+}
+
+.tryAgainButton {
+    background-color: var(--color-secondary);
+}
+
+.tryAgainButton:hover {
+    background-color: var(--color-primary);
+    opacity: 0.9;
+}
+
 /* Responsividade para telas grandes */
 @media (max-width: 1440px) {
     .questionsEndSection {

@@ -11,10 +11,12 @@ interface ContentCardProps {
 const ContentCard: React.FC<ContentCardProps> = ({ 
   title, 
   linkText = "Acessar", 
-  linkHref = "#",
+  linkHref,
   onClick 
 }) => {
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log('ContentCard clicked, onClick exists:', !!onClick);
     if (onClick) {
       onClick();
     }
@@ -23,13 +25,22 @@ const ContentCard: React.FC<ContentCardProps> = ({
   return (
     <div className={styles.recentContentCard}>
       <p className={styles.recentContentCardTitle}>{title}</p>
-      <a 
-        className={styles.recentContentCardLink} 
-        href={linkHref}
-        onClick={handleClick}
-      >
-        {linkText}
-      </a>
+      {linkHref ? (
+        <a 
+          className={styles.recentContentCardLink} 
+          href={linkHref}
+          onClick={handleClick}
+        >
+          {linkText}
+        </a>
+      ) : (
+        <button 
+          className={styles.recentContentCardLink} 
+          onClick={handleClick}
+        >
+          {linkText}
+        </button>
+      )}
     </div>
   );
 };

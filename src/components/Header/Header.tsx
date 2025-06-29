@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
+import { isAuthenticated } from '../../services/authService';
 
 const Header: React.FC = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const isLoggedIn = isAuthenticated();
 
     const handleSectionClick = (sectionId: string) => {
         setMenuOpen(false);
@@ -54,13 +56,25 @@ const Header: React.FC = () => {
                 >
                     Conteúdos Recentes
                 </button>
-                <Link to="/login" className={`${styles.button} ${styles.navButton}`}>
+                {isLoggedIn ? (
+                    <Link to="/profile" className={`${styles.button} ${styles.navButton}`}>
+                        Perfil
+                    </Link>
+                ) : (
+                    <Link to="/login" className={`${styles.button} ${styles.navButton}`}>
+                        Entrar
+                    </Link>
+                )}
+            </nav>
+            {isLoggedIn ? (
+                <Link to="/profile" className={`${styles.button} ${styles.desktopButton}`}>
+                    Perfil
+                </Link>
+            ) : (
+                <Link to="/login" className={`${styles.button} ${styles.desktopButton}`}>
                     Entrar
                 </Link>
-            </nav>
-            <Link to="/login" className={`${styles.button} ${styles.desktopButton}`}>
-                Entrar
-            </Link>
+            )}
         </header>
     );
 };

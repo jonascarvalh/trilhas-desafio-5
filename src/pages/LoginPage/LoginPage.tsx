@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import { login } from '../../services/authService';  // Certifique-se de importar a função de login
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -8,24 +9,32 @@ import styles from './LoginPage.module.css';
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [erro, setErro] = useState('');
   const navigate = useNavigate();  // Hook para navegação após login
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email.trim() || !senha.trim()) {
-      setErro('Por favor, preencha todos os campos.');
+      toast.error('Por favor, preencha todos os campos.');
       return;
     }
 
     try {
+      // Mostrar toast de carregamento
+      toast.loading('Fazendo login...', {
+        duration: 2000,
+      });
+      
       // Envia as credenciais para o servidor
       await login(email, senha);
+      
+      // Toast de sucesso
+      toast.success('Login realizado com sucesso!');
+      
       // Se o login for bem-sucedido, redireciona para a página de perfil
       navigate('/profile');
     } catch (error) {
-      setErro('Credenciais inválidas');
+      toast.error('Credenciais inválidas');
     }
   };
 
@@ -55,8 +64,6 @@ const LoginPage: React.FC = () => {
                 onChange={(e) => setSenha(e.target.value)}
               />
             </div>
-
-            {erro && <p className={styles.loginError}>{erro}</p>}
 
             <div className={styles.loginActions}>
               <button className={styles.loginButton} type="submit">
