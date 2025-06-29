@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { register } from '../../services/authService';  // Certifique-se de importar a função de registro
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import styles from './RegisterPage.module.css';
@@ -10,8 +11,9 @@ const RegisterPage: React.FC = () => {
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
   const [erro, setErro] = useState('');
+  const navigate = useNavigate();  // Hook para navegação após registro
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!nome.trim() || !email.trim() || !senha.trim() || !confirmarSenha.trim()) {
@@ -24,7 +26,14 @@ const RegisterPage: React.FC = () => {
       return;
     }
 
-    
+    try {
+      // Envia os dados de registro para o servidor
+      await register(email, senha, nome);
+      // Se o registro for bem-sucedido, redireciona para a página de login
+      navigate('/login');
+    } catch (error) {
+      setErro('Erro ao registrar usuário');
+    }
   };
 
   return (
@@ -75,7 +84,6 @@ const RegisterPage: React.FC = () => {
             </div>
 
             {erro && <p className={styles.registerError}>{erro}</p>}
-
 
             <div className={styles.registerActions}>
               <button className={styles.registerButton} type="submit">

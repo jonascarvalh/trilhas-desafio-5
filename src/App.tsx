@@ -10,6 +10,7 @@ import ArticleDetailView from './pages/ArticleDetailView/ArticleDetailView';
 import QuestionsMenu from './pages/QuestionsMenu/QuestionsMenu';
 import QuestionsEnd from './pages/QuestionsEnd/QuestionsEnd';
 import QuestionsGame from './pages/QuestionsGame/QuestionsGame';
+import PrivateRoute from './components/PrivateRoute';
 
 const App: React.FC = () => {
   return (
@@ -18,13 +19,15 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/paths" element={<Paths />} />
-        <Route path="/path-view" element={<PathView />} />
-        <Route path="/article-detail-view" element={<ArticleDetailView />} />
-        <Route path="/questions-menu" element={<QuestionsMenu />} />
-        <Route path="/questions-end" element={<QuestionsEnd/>} />
-        <Route path="/questions-game" element={<QuestionsGame/>} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/paths" element={<Paths />} />
+          <Route path="/path-view" element={<PathView />} />
+          <Route path="/article-detail-view" element={<ArticleDetailView />} />
+          <Route path="/questions-menu" element={<QuestionsMenu />} />
+          <Route path="/questions-end" element={<QuestionsEnd/>} />
+          <Route path="/questions-game" element={<QuestionsGame/>} />
+        </Route>
       </Routes>
     </Router>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../../services/authService';  // Certifique-se de importar a função de login
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import styles from './LoginPage.module.css';
@@ -8,8 +9,9 @@ const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const navigate = useNavigate();  // Hook para navegação após login
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!email.trim() || !senha.trim()) {
@@ -17,7 +19,14 @@ const LoginPage: React.FC = () => {
       return;
     }
 
-    
+    try {
+      // Envia as credenciais para o servidor
+      await login(email, senha);
+      // Se o login for bem-sucedido, redireciona para a página de perfil
+      navigate('/profile');
+    } catch (error) {
+      setErro('Credenciais inválidas');
+    }
   };
 
   return (
@@ -47,8 +56,7 @@ const LoginPage: React.FC = () => {
               />
             </div>
 
-{erro && <p className={styles.loginError}>{erro}</p>}
-
+            {erro && <p className={styles.loginError}>{erro}</p>}
 
             <div className={styles.loginActions}>
               <button className={styles.loginButton} type="submit">
