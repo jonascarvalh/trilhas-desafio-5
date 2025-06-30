@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import styles from './QuestionsGame.module.css';
 import Footer from '../../components/Footer/Footer';
-import { getQuizQuestionsWithOptions, getArticleQuiz } from '../../services/articleService';
+import { getQuizQuestionsWithOptions, getArticleQuiz, getQuizById } from '../../services/articleService';
 import { updateUserXP, assignUserBadge } from '../../services/userService';
 import type { QuestionWithOptions, Quiz } from '../../services/articleService';
 
@@ -17,6 +17,7 @@ const QuestionsGame: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [correctAnswers, setCorrectAnswers] = useState(0); // Quantidade de acertos
+    const [isFinishing, setIsFinishing] = useState(false); // Previne múltiplas execuções
 
     const quizId = searchParams.get('quizId');
     const articleId = searchParams.get('articleId');
@@ -33,20 +34,30 @@ const QuestionsGame: React.FC = () => {
                 // Buscar perguntas do quiz
                 const questionsData = await getQuizQuestionsWithOptions(parseInt(quizId));
                 
-                // Se temos articleId, buscar o quiz completo
+                // Buscar o quiz completo - priorizar busca por quizId
                 let quizData: Quiz;
-                if (articleId) {
-                    quizData = await getArticleQuiz(parseInt(articleId));
-                } else {
-                    // Fallback - criar objeto básico do quiz
-                    quizData = {
-                        id: parseInt(quizId),
-                        article_id: 1,
-                        title: 'Quiz de Conhecimento',
-                        description: 'Teste seus conhecimentos',
-                        xp_reward: 50,
-                        badge_id: null
-                    } as Quiz;
+                try {
+                    // Primeiro tentar buscar diretamente pelo quizId
+                    quizData = await getQuizById(parseInt(quizId));
+                } catch (quizError) {
+                    // Se falhar e temos articleId, tentar buscar pelo artigo
+                    if (articleId) {
+                        try {
+                            quizData = await getArticleQuiz(parseInt(articleId));
+                        } catch (articleError) {
+                            throw quizError; // Re-lançar o erro original
+                        }
+                    } else {
+                        // Fallback - criar objeto básico do quiz
+                        quizData = {
+                            id: parseInt(quizId),
+                            article_id: 1,
+                            title: 'Quiz de Conhecimento',
+                            description: 'Teste seus conhecimentos',
+                            xp_reward: 50,
+                            badge_id: null
+                        } as Quiz;
+                    }
                 }
 
                 setQuestions(questionsData);
@@ -107,55 +118,64 @@ const QuestionsGame: React.FC = () => {
     };
 
     const handleFinishQuiz = async () => {
-        // Calcular pontuação
-        let correctAnswers = 0;
-        
-        questions.forEach(question => {
-            const selectedOptionId = selectedAnswers[question.id];
-            const selectedOption = question.options.find(opt => opt.id === selectedOptionId);
+        // Prevenir múltiplas execuções
+        if (isFinishing) return;
+        setIsFinishing(true);
+
+        try {
+            // Calcular pontuação
+            let correctAnswers = 0;
             
-            if (selectedOption?.is_correct) {
-                correctAnswers++;
-            }
-        });
+            questions.forEach(question => {
+                const selectedOptionId = selectedAnswers[question.id];
+                const selectedOption = question.options.find(opt => opt.id === selectedOptionId);
+                
+                if (selectedOption?.is_correct) {
+                    correctAnswers++;
+                }
+            });
 
-        const score = (correctAnswers / questions.length) * 100;
-        const passed = score >= 70;
-        const xpEarned = passed ? quiz?.xp_reward || 0 : 0;
-        let badgeEarned = false;
+            const score = (correctAnswers / questions.length) * 100;
+            const passed = score >= 70;
+            const xpEarned = passed ? quiz?.xp_reward || 0 : 0;
+            let badgeEarned = false;
 
-        // Se o usuário passou no teste
-        if (passed) {
-            // Atualizar XP se houver recompensa
-            if (xpEarned > 0) {
-                try {
-                    await updateUserXP(xpEarned);
-                    toast.success(`Parabéns! Você ganhou ${xpEarned} XP!`);
-                } catch (error) {
-                    console.error('Erro ao atualizar XP:', error);
-                    toast.error('Erro ao atualizar seu XP');
+            // Se o usuário passou no teste
+            if (passed) {
+                const rewards: string[] = [];
+
+                // Atualizar XP se houver recompensa
+                if (xpEarned > 0) {
+                    try {
+                        await updateUserXP(xpEarned);
+                        rewards.push(`${xpEarned} XP`);
+                    } catch (error) {
+                        console.error('Erro ao atualizar XP:', error);
+                        toast.error('Erro ao atualizar seu XP');
+                    }
+                }
+
+                // Atribuir badge se o quiz tiver uma badge associada
+                if (quiz?.badge_id) {
+                    try {
+                        await assignUserBadge(quiz.badge_id);
+                        badgeEarned = true;
+                        rewards.push('Nova Insígnia 🏆');
+                    } catch (error: any) {}
                 }
             }
 
-            // Atribuir badge se o quiz tiver um artigo associado
-            if (quiz?.article_id) {
-                try {
-                    await assignUserBadge(quiz.article_id);
-                    badgeEarned = true;
-                    toast.success('🏆 Parabéns! Você conquistou uma nova insígnia!');
-                } catch (error: any) {}
-            }
+            // Navegar para a página de resultados
+            navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${xpEarned}&badgeEarned=${badgeEarned}&articleId=${quiz?.article_id || ''}`);
+        } finally {
+            setIsFinishing(false);
         }
-
-        // Navegar para a página de resultados
-        navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${xpEarned}&badgeEarned=${badgeEarned}&articleId=${quiz?.article_id || ''}`);
     };
 
     if (loading) {
         return (
             <div>
                 <section className={styles.questionsGameSection}>
-                    <p>Carregando quiz...</p>
                 </section>
                 <Footer />
             </div>
@@ -222,8 +242,17 @@ const QuestionsGame: React.FC = () => {
                 </div>
 
                 <div className={styles.buttons}>
-                    <button className={styles.nextButton} onClick={handleNextQuestion}>
-                        {currentQuestionIndex === questions.length - 1 ? 'Finalizar' : 'Próxima'}
+                    <button 
+                        className={styles.nextButton} 
+                        onClick={handleNextQuestion}
+                        disabled={isFinishing && currentQuestionIndex === questions.length - 1}
+                    >
+                        {isFinishing && currentQuestionIndex === questions.length - 1 
+                            ? 'Finalizando...' 
+                            : currentQuestionIndex === questions.length - 1 
+                                ? 'Finalizar' 
+                                : 'Próxima'
+                        }
                     </button>
                 </div>
             </section>

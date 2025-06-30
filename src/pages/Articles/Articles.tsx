@@ -30,7 +30,6 @@ const Paths: React.FC = () => {
     }, []);
 
     const handleArticleClick = (articleId: string) => {
-        console.log('Clicou no artigo:', articleId);
         navigate(`/article/${articleId}`);
     };
 
@@ -48,7 +47,6 @@ const Paths: React.FC = () => {
                 <section className={styles.pathsSection}>
                     <h2 className={styles.sectionTitle}>Nossas Trilhas de Aprendizado</h2>
                     <h3 className={styles.sectionSubtitle}>Dê seu primeiro passo no aprendizado.</h3>
-                    <p>Carregando...</p>
                 </section>
                 <Footer />
             </div>

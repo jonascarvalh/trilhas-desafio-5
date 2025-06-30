@@ -16,7 +16,6 @@ const ContentCard: React.FC<ContentCardProps> = ({
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log('ContentCard clicked, onClick exists:', !!onClick);
     if (onClick) {
       onClick();
     }

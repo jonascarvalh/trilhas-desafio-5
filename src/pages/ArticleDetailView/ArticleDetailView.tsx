@@ -55,7 +55,7 @@ const ArticleDetailView: React.FC = () => {
             <div>
                 <Header />
                 <section className={styles.articleDetailViewSection}>
-                    <p>Carregando...</p>
+                    
                 </section>
                 <Footer />
             </div>

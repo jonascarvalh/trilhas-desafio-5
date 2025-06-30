@@ -26,12 +26,6 @@ const QuestionsEnd: React.FC = () => {
             });
         }
         
-        if (passed && badgeEarned) {
-            toast.success('🏆 Parabéns! Você conquistou uma nova insígnia!', {
-                duration: 4000,
-            });
-        }
-        
         if (!passed) {
             toast.error('Você precisa de pelo menos 70% para passar. Tente novamente!', {
                 duration: 4000,

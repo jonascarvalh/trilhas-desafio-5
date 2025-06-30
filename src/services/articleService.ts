@@ -108,6 +108,29 @@ export const getArticleQuiz = async (articleId: number): Promise<Quiz> => {
   }
 };
 
+// Função para buscar um quiz específico por ID
+export const getQuizById = async (quizId: number): Promise<Quiz> => {
+  try {
+    const token = getAuthToken();
+    
+    if (!token) {
+      throw new Error('Token de autenticação não encontrado');
+    }
+    
+    const response = await axios.get(`${API_URL}/quizzes/${quizId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao buscar quiz:', error);
+    throw new Error('Falha ao buscar quiz');
+  }
+};
+
 // Função para buscar as perguntas de um quiz
 export const getQuizQuestions = async (quizId: number): Promise<Question[]> => {
   try {

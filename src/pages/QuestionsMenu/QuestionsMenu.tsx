@@ -61,7 +61,6 @@ const QuestionsMenu: React.FC = () => {
             <div>
                 <Header />
                 <section className={styles.questionsMenuSection}>
-                    <p>Carregando quiz...</p>
                 </section>
                 <Footer />
             </div>

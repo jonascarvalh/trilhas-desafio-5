@@ -35,7 +35,6 @@ const HomePage: React.FC = () => {
     }, []);
 
     const handleArticleClick = (articleId: string) => {
-        console.log('Clicou no artigo:', articleId);
         navigate(`/article/${articleId}`);
     };
 
@@ -105,7 +104,7 @@ const HomePage: React.FC = () => {
         <h2 className={styles.sectionTitle}>Conteúdo Recente</h2>
         <h3 className={styles.sectionSubtitle}>Últimos conteúdos lançados na plataforma.</h3>
 
-        {loading && <p>Carregando...</p>}
+        {loading}
         {error && <p>Erro: {error}</p>}
         {!loading && !error && <ContentCardContainer items={recentContentItems} />}
       </section>
