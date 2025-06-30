@@ -38,6 +38,63 @@
     color: var(--color-secondary);
 }
 
+.badgeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    animation: badgeGlow 2s ease-in-out infinite alternate;
+}
+
+.badgeIcon {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.badgeImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+    border: 3px solid #ffb347;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.badgeText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #8b4513;
+    text-align: center;
+    margin: 0;
+}
+
+.badgeDescription {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #8b4513;
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+    opacity: 0.8;
+}
+
+@keyframes badgeGlow {
+    0% {
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+    100% {
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+    }
+}
+
 .xpDescription {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -121,6 +178,28 @@
         font-size: 3.5rem;
     }
 
+    .badgeContainer {
+        margin: 1.5rem 0;
+        padding: 1.25rem;
+    }
+
+    .badgeIcon {
+        font-size: 2.5rem;
+    }
+
+    .badgeImage {
+        width: 70px;
+        height: 70px;
+    }
+
+    .badgeText {
+        font-size: 1.3rem;
+    }
+
+    .badgeDescription {
+        font-size: 0.9rem;
+    }
+
     .xpDescription {
         font-size: 1.1rem;
     }
@@ -147,6 +226,28 @@
 
     .xpText {
         font-size: 3rem;
+    }
+
+    .badgeContainer {
+        margin: 1.2rem 0;
+        padding: 1rem;
+    }
+
+    .badgeIcon {
+        font-size: 2.2rem;
+    }
+
+    .badgeImage {
+        width: 65px;
+        height: 65px;
+    }
+
+    .badgeText {
+        font-size: 1.2rem;
+    }
+
+    .badgeDescription {
+        font-size: 0.85rem;
     }
 
     .xpDescription {
@@ -178,6 +279,28 @@
         font-size: 2.5rem;
     }
 
+    .badgeContainer {
+        margin: 1rem 0;
+        padding: 0.8rem;
+    }
+
+    .badgeIcon {
+        font-size: 2rem;
+    }
+
+    .badgeImage {
+        width: 60px;
+        height: 60px;
+    }
+
+    .badgeText {
+        font-size: 1rem;
+    }
+
+    .badgeDescription {
+        font-size: 0.8rem;
+    }
+
     .xpDescription {
         font-size: 0.9rem;
         margin-top: 0.6rem;
@@ -205,6 +328,28 @@
 
     .xpText {
         font-size: 2rem;
+    }
+
+    .badgeContainer {
+        margin: 0.8rem 0;
+        padding: 0.6rem;
+    }
+
+    .badgeIcon {
+        font-size: 1.8rem;
+    }
+
+    .badgeImage {
+        width: 50px;
+        height: 50px;
+    }
+
+    .badgeText {
+        font-size: 0.9rem;
+    }
+
+    .badgeDescription {
+        font-size: 0.75rem;
     }
 
     .xpDescription {

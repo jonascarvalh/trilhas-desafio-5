@@ -44,6 +44,28 @@
     display: flex;
     flex-direction: row;
     gap: 1.25rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.badgeItem {
+    position: relative;
+}
+
+.badgeImage {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.noBadges {
+    color: var(--color-background);
+    opacity: 0.7;
+    font-style: italic;
+    margin: 0;
 }
 
 /* Responsividade para Notebooks */
@@ -67,6 +89,11 @@
 
     .profileInsignias {
         gap: 1rem;
+    }
+
+    .badgeImage {
+        width: 56px;
+        height: 56px;
     }
 
     .profilePage img {
@@ -107,6 +134,11 @@
         justify-content: center;
     }
 
+    .badgeImage {
+        width: 48px;
+        height: 48px;
+    }
+
     .profilePage img {
         max-width: 150px;
         height: auto;
@@ -137,6 +169,11 @@
 
     .profileInsignias {
         gap: 0.5rem;
+    }
+
+    .badgeImage {
+        width: 40px;
+        height: 40px;
     }
 
     .profilePage img {
@@ -170,10 +207,39 @@
         gap: 0.4rem;
     }
 
+    .badgeImage {
+        width: 36px;
+        height: 36px;
+    }
+
     .profilePage img {
         max-width: 100px;
         height: auto;
     }
+}
+
+.buttonsContainer {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-self: flex-start;
+}
+
+.articlesButton {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.articlesButton:hover {
+    opacity: 0.8;
 }
 
 .logoutButton {
@@ -187,26 +253,37 @@
     border: none;
     cursor: pointer;
     transition: opacity 0.2s ease;
-    margin-top: 1rem;
-    align-self: flex-start;
 }
 
 .logoutButton:hover {
     opacity: 0.8;
 }
 
-/* Responsividade para o botão de logout */
+/* Responsividade para os botões */
 @media (max-width: 768px) {
+    .buttonsContainer {
+        align-self: center;
+        justify-content: center;
+    }
+
+    .articlesButton,
     .logoutButton {
         font-size: 1rem;
         padding: 0.6rem 1.2rem;
-        align-self: center;
     }
 }
 
 @media (max-width: 480px) {
+    .buttonsContainer {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .articlesButton,
     .logoutButton {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
+        width: 100%;
     }
 }

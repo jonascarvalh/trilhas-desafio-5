@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import styles from './QuestionsGame.module.css';
 import Footer from '../../components/Footer/Footer';
 import { getQuizQuestionsWithOptions, getArticleQuiz } from '../../services/articleService';
+import { updateUserXP, assignUserBadge } from '../../services/userService';
 import type { QuestionWithOptions, Quiz } from '../../services/articleService';
 
 const QuestionsGame: React.FC = () => {
@@ -15,9 +16,10 @@ const QuestionsGame: React.FC = () => {
     const [selectedAnswers, setSelectedAnswers] = useState<{ [key: number]: number }>({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [userXP, setUserXP] = useState(150); // XP do usuário (pode vir do contexto/localStorage)
+    const [correctAnswers, setCorrectAnswers] = useState(0); // Quantidade de acertos
 
     const quizId = searchParams.get('quizId');
+    const articleId = searchParams.get('articleId');
 
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -28,20 +30,24 @@ const QuestionsGame: React.FC = () => {
             }
 
             try {
-                // Buscar dados do quiz e perguntas em paralelo
-                const [questionsData, quizData] = await Promise.all([
-                    getQuizQuestionsWithOptions(parseInt(quizId)),
-                    // Para buscar o quiz, precisamos do articleId, mas vamos simular por enquanto
-                    // getArticleQuiz(articleId) - como não temos o articleId aqui, vamos criar um objeto básico
-                    Promise.resolve({
+                // Buscar perguntas do quiz
+                const questionsData = await getQuizQuestionsWithOptions(parseInt(quizId));
+                
+                // Se temos articleId, buscar o quiz completo
+                let quizData: Quiz;
+                if (articleId) {
+                    quizData = await getArticleQuiz(parseInt(articleId));
+                } else {
+                    // Fallback - criar objeto básico do quiz
+                    quizData = {
                         id: parseInt(quizId),
                         article_id: 1,
                         title: 'Quiz de Conhecimento',
                         description: 'Teste seus conhecimentos',
                         xp_reward: 50,
                         badge_id: null
-                    } as Quiz)
-                ]);
+                    } as Quiz;
+                }
 
                 setQuestions(questionsData);
                 setQuiz(quizData);
@@ -55,7 +61,7 @@ const QuestionsGame: React.FC = () => {
         };
 
         fetchQuizData();
-    }, [quizId]);
+    }, [quizId, articleId]);
 
     const handleAnswerSelect = (questionId: number, optionId: number) => {
         setSelectedAnswers(prev => ({
@@ -72,6 +78,20 @@ const QuestionsGame: React.FC = () => {
             return;
         }
 
+        // Calcular acertos até a pergunta atual (incluindo ela)
+        let correct = 0;
+        for (let i = 0; i <= currentQuestionIndex; i++) {
+            const question = questions[i];
+            const selectedOptionId = selectedAnswers[question.id];
+            if (selectedOptionId) {
+                const selectedOption = question.options.find(opt => opt.id === selectedOptionId);
+                if (selectedOption?.is_correct) {
+                    correct++;
+                }
+            }
+        }
+        setCorrectAnswers(correct);
+
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
@@ -86,7 +106,7 @@ const QuestionsGame: React.FC = () => {
         }
     };
 
-    const handleFinishQuiz = () => {
+    const handleFinishQuiz = async () => {
         // Calcular pontuação
         let correctAnswers = 0;
         
@@ -101,9 +121,34 @@ const QuestionsGame: React.FC = () => {
 
         const score = (correctAnswers / questions.length) * 100;
         const passed = score >= 70;
+        const xpEarned = passed ? quiz?.xp_reward || 0 : 0;
+        let badgeEarned = false;
+
+        // Se o usuário passou no teste
+        if (passed) {
+            // Atualizar XP se houver recompensa
+            if (xpEarned > 0) {
+                try {
+                    await updateUserXP(xpEarned);
+                    toast.success(`Parabéns! Você ganhou ${xpEarned} XP!`);
+                } catch (error) {
+                    console.error('Erro ao atualizar XP:', error);
+                    toast.error('Erro ao atualizar seu XP');
+                }
+            }
+
+            // Atribuir badge se o quiz tiver um artigo associado
+            if (quiz?.article_id) {
+                try {
+                    await assignUserBadge(quiz.article_id);
+                    badgeEarned = true;
+                    toast.success('🏆 Parabéns! Você conquistou uma nova insígnia!');
+                } catch (error: any) {}
+            }
+        }
 
         // Navegar para a página de resultados
-        navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${passed ? quiz?.xp_reward || 0 : 0}`);
+        navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${xpEarned}&badgeEarned=${badgeEarned}&articleId=${quiz?.article_id || ''}`);
     };
 
     if (loading) {
@@ -139,7 +184,7 @@ const QuestionsGame: React.FC = () => {
         <div>
             <section className={styles.questionsGameSection}>
                 <div className={styles.header}>
-                    <p className={styles.xpText}>XP: {userXP}</p>
+                    <p className={styles.xpText}>Acertos: {correctAnswers}/{questions.length}</p>
                     <div className={styles.progressContainer}>
                         <div className={styles.progressBar}>
                             <div 
@@ -177,11 +222,6 @@ const QuestionsGame: React.FC = () => {
                 </div>
 
                 <div className={styles.buttons}>
-                    {currentQuestionIndex > 0 && (
-                        <button className={styles.backButton} onClick={handlePreviousQuestion}>
-                            Anterior
-                        </button>
-                    )}
                     <button className={styles.nextButton} onClick={handleNextQuestion}>
                         {currentQuestionIndex === questions.length - 1 ? 'Finalizar' : 'Próxima'}
                     </button>

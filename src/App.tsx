@@ -5,7 +5,7 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import Paths from './pages/Paths/Paths';
+import Paths from './pages/Articles/Articles';
 import PathView from './pages/PathView/PathView';
 import ArticleDetailView from './pages/ArticleDetailView/ArticleDetailView';
 import QuestionsMenu from './pages/QuestionsMenu/QuestionsMenu';
@@ -41,7 +41,7 @@ const App: React.FC = () => {
         } />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/paths" element={<Paths />} />
+          <Route path="/articles" element={<Paths />} />
           <Route path="/path-view" element={<PathView />} />
           <Route path="/article/:id" element={<ArticleDetailView />} />
           <Route path="/questions-menu" element={<QuestionsMenu />} />

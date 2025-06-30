@@ -1,33 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import styles from './QuestionsEnd.module.css';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import boltLogo from '../../assets/QuestionsMenu/bolt.png';
+import { getUserBadges, type UserBadge } from '../../services/userService';
 
 const QuestionsEnd: React.FC = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const [earnedBadge, setEarnedBadge] = useState<UserBadge | null>(null);
+    const [loadingBadge, setLoadingBadge] = useState(false);
     
     const score = parseFloat(searchParams.get('score') || '0');
     const passed = searchParams.get('passed') === 'true';
     const xpEarned = parseInt(searchParams.get('xpEarned') || '0');
+    const badgeEarned = searchParams.get('badgeEarned') === 'true';
+    const articleId = searchParams.get('articleId');
 
     useEffect(() => {
         if (passed && xpEarned > 0) {
             toast.success(`Parabéns! Você ganhou ${xpEarned} XP!`, {
                 duration: 4000,
             });
-        } else if (!passed) {
+        }
+        
+        if (passed && badgeEarned) {
+            toast.success('🏆 Parabéns! Você conquistou uma nova insígnia!', {
+                duration: 4000,
+            });
+        }
+        
+        if (!passed) {
             toast.error('Você precisa de pelo menos 70% para passar. Tente novamente!', {
                 duration: 4000,
             });
         }
-    }, [passed, xpEarned]);
+    }, [passed, xpEarned, badgeEarned]);
+
+    // Buscar a badge conquistada quando badgeEarned for true
+    useEffect(() => {
+        const fetchEarnedBadge = async () => {
+            if (badgeEarned && articleId) {
+                setLoadingBadge(true);
+                try {
+                    const userBadges = await getUserBadges();
+                    const foundBadge = userBadges.find(badge => badge.id === parseInt(articleId));
+                    if (foundBadge) {
+                        setEarnedBadge(foundBadge);
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar badge conquistada:', error);
+                } finally {
+                    setLoadingBadge(false);
+                }
+            }
+        };
+
+        fetchEarnedBadge();
+    }, [badgeEarned, articleId]);
 
     const handleBackToHome = () => {
-        navigate('/');
+        if (passed) {
+            navigate('/articles');
+        } else {
+            navigate('/'); // Vai para a home se perdeu
+        }
     };
 
     const handleTryAgain = () => {
@@ -71,6 +110,30 @@ const QuestionsEnd: React.FC = () => {
                     </div>
                 )}
 
+                {passed && badgeEarned && (
+                    <div className={styles.badgeContainer}>
+                        {loadingBadge ? (
+                            <div className={styles.badgeIcon}>🏆</div>
+                        ) : earnedBadge ? (
+                            <img 
+                                src={earnedBadge.image_url} 
+                                alt={earnedBadge.badge_name}
+                                className={styles.badgeImage}
+                            />
+                        ) : (
+                            <div className={styles.badgeIcon}>🏆</div>
+                        )}
+                        <p className={styles.badgeText}>
+                            {earnedBadge ? earnedBadge.badge_name : 'Nova Insígnia Conquistada!'}
+                        </p>
+                        {earnedBadge && (
+                            <p className={styles.badgeDescription}>
+                                {earnedBadge.description}
+                            </p>
+                        )}
+                    </div>
+                )}
+
                 <p className={styles.xpDescription}>
                     {getScoreDescription()}
                 </p>
@@ -82,7 +145,7 @@ const QuestionsEnd: React.FC = () => {
                         </button>
                     )}
                     <button className={styles.homeButton} onClick={handleBackToHome}>
-                        Voltar ao Início
+                        {passed ? 'Ver Artigos' : 'Voltar ao Início'}
                     </button>
                 </div>
             </section>

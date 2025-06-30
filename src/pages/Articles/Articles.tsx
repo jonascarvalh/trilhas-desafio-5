@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
-import styles from './Paths.module.css';
+import styles from './Articles.module.css';
 import { ContentCardContainer } from '../../components/ContentCard';
 import { getArticles } from '../../services/articleService';
 import type { Article } from '../../services/articleService';
