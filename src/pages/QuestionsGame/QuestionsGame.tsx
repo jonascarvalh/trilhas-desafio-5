@@ -150,11 +150,7 @@ const QuestionsGame: React.FC = () => {
         }
     };
 
-    const handlePreviousQuestion = () => {
-        if (currentQuestionIndex > 0) {
-            setCurrentQuestionIndex(prev => prev - 1);
-        }
-    };
+
 
     const handleFinishQuiz = async () => {
         // Prevenir múltiplas execuções

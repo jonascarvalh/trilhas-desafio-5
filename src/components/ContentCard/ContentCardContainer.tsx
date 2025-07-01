@@ -2,7 +2,7 @@ import React from 'react';
 import ContentCard from './ContentCard';
 import styles from './ContentCardContainer.module.css';
 
-interface ContentItem {
+export interface ContentItem {
   id: string;
   title: string;
   linkText?: string;
