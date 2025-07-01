@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.API_URL || 'http://localhost:3000'; // URL do servidor backend
+const API_URL = 'https://back-end-conectaai-production.up.railway.app'; // URL do servidor backend
 
 // Função de login
 export const login = async (email: string, password: string) => {
