@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import 'highlight.js/styles/github-dark.css';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import styles from './ArticleDetailView.module.css';
@@ -88,7 +93,12 @@ const ArticleDetailView: React.FC = () => {
                 </h3>
 
                 <div className={styles.articleDetailViewContent}>
-                    <div dangerouslySetInnerHTML={{ __html: article.content }} />
+                    <ReactMarkdown 
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+                    >
+                        {article.content}
+                    </ReactMarkdown>
                 </div>
                 
                 <div className={styles.articleDetailViewButtons}>

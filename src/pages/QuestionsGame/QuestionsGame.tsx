@@ -7,6 +7,11 @@ import { getQuizQuestionsWithOptions, getArticleQuiz, getQuizById } from '../../
 import { updateUserXP, assignUserBadge } from '../../services/userService';
 import type { QuestionWithOptions, Quiz } from '../../services/articleService';
 
+// Importar arquivos de som
+import acertoSound from '../../assets/QuestionsGame/acerto.mp3';
+import erroSound from '../../assets/QuestionsGame/erro.mp3';
+import conclusaoSound from '../../assets/QuestionsGame/conclusão.mp3';
+
 const QuestionsGame: React.FC = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -18,9 +23,23 @@ const QuestionsGame: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [correctAnswers, setCorrectAnswers] = useState(0); // Quantidade de acertos
     const [isFinishing, setIsFinishing] = useState(false); // Previne múltiplas execuções
+    const [answeredQuestions, setAnsweredQuestions] = useState<Set<number>>(new Set()); // Perguntas já respondidas
 
     const quizId = searchParams.get('quizId');
     const articleId = searchParams.get('articleId');
+
+    // Função para reproduzir sons
+    const playSound = (soundFile: string) => {
+        try {
+            const audio = new Audio(soundFile);
+            audio.volume = 0.5; // Volume a 50%
+            audio.play().catch(error => {
+                console.log('Erro ao reproduzir som:', error);
+            });
+        } catch (error) {
+            console.log('Erro ao criar audio:', error);
+        }
+    };
 
     useEffect(() => {
         const fetchQuizData = async () => {
@@ -75,16 +94,36 @@ const QuestionsGame: React.FC = () => {
     }, [quizId, articleId]);
 
     const handleAnswerSelect = (questionId: number, optionId: number) => {
+        // Verificar se a pergunta já foi respondida - se sim, não permitir mudança
+        if (answeredQuestions.has(questionId)) {
+            return;
+        }
+
         setSelectedAnswers(prev => ({
             ...prev,
             [questionId]: optionId
         }));
+
+        // Marcar pergunta como respondida
+        setAnsweredQuestions(prev => new Set([...prev, questionId]));
+
+        // Verificar se a resposta está correta e reproduzir som
+        const currentQuestion = questions.find(q => q.id === questionId);
+        if (currentQuestion) {
+            const selectedOption = currentQuestion.options.find(opt => opt.id === optionId);
+            if (selectedOption?.is_correct) {
+                playSound(acertoSound);
+            } else {
+                playSound(erroSound);
+            }
+        }
     };
 
     const handleNextQuestion = () => {
         const currentQuestion = questions[currentQuestionIndex];
         
-        if (!selectedAnswers[currentQuestion.id]) {
+        // Verificar se a pergunta foi respondida
+        if (!answeredQuestions.has(currentQuestion.id)) {
             toast.error('Por favor, selecione uma resposta antes de continuar');
             return;
         }
@@ -165,8 +204,14 @@ const QuestionsGame: React.FC = () => {
                 }
             }
 
-            // Navegar para a página de resultados
-            navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${xpEarned}&badgeEarned=${badgeEarned}&articleId=${quiz?.article_id || ''}`);
+            // Reproduzir som de conclusão
+            playSound(conclusaoSound);
+
+            // Aguardar um pouco para o som tocar antes de navegar
+            setTimeout(() => {
+                // Navegar para a página de resultados
+                navigate(`/questions-end?score=${score}&passed=${passed}&xpEarned=${xpEarned}&badgeEarned=${badgeEarned}&articleId=${quiz?.article_id || ''}`);
+            }, 500);
         } finally {
             setIsFinishing(false);
         }
@@ -222,30 +267,50 @@ const QuestionsGame: React.FC = () => {
                 <h3 className={styles.sectionSubtitle}>{currentQuestion.question_text}</h3>
 
                 <div className={styles.radioCards}>
-                    {currentQuestion.options.map((option) => (
-                        <label 
-                            key={option.id} 
-                            className={`${styles.radioCard} ${
-                                selectedAnswers[currentQuestion.id] === option.id ? styles.selected : ''
-                            }`}
-                        >
-                            <input 
-                                type="radio" 
-                                name={`question-${currentQuestion.id}`}
-                                value={option.id}
-                                checked={selectedAnswers[currentQuestion.id] === option.id}
-                                onChange={() => handleAnswerSelect(currentQuestion.id, option.id)}
-                            />
-                            <p>{option.option_text}</p>
-                        </label>
-                    ))}
+                    {currentQuestion.options.map((option) => {
+                        const isQuestionAnswered = answeredQuestions.has(currentQuestion.id);
+                        const isSelected = selectedAnswers[currentQuestion.id] === option.id;
+                        const isCorrect = option.is_correct;
+                        
+                        return (
+                            <label 
+                                key={option.id} 
+                                className={`${styles.radioCard} ${
+                                    isSelected ? styles.selected : ''
+                                } ${
+                                    isQuestionAnswered ? styles.disabled : ''
+                                } ${
+                                    isQuestionAnswered && isSelected && isCorrect ? styles.correct : ''
+                                } ${
+                                    isQuestionAnswered && isSelected && !isCorrect ? styles.incorrect : ''
+                                }`}
+                                style={{ 
+                                    cursor: isQuestionAnswered ? 'not-allowed' : 'pointer',
+                                    opacity: isQuestionAnswered && !isSelected ? 0.6 : 1
+                                }}
+                            >
+                                <input 
+                                    type="radio" 
+                                    name={`question-${currentQuestion.id}`}
+                                    value={option.id}
+                                    checked={isSelected}
+                                    onChange={() => handleAnswerSelect(currentQuestion.id, option.id)}
+                                    disabled={isQuestionAnswered}
+                                />
+                                <p>{option.option_text}</p>
+                            </label>
+                        );
+                    })}
                 </div>
 
                 <div className={styles.buttons}>
                     <button 
                         className={styles.nextButton} 
                         onClick={handleNextQuestion}
-                        disabled={isFinishing && currentQuestionIndex === questions.length - 1}
+                        disabled={
+                            !answeredQuestions.has(currentQuestion.id) || 
+                            (isFinishing && currentQuestionIndex === questions.length - 1)
+                        }
                     >
                         {isFinishing && currentQuestionIndex === questions.length - 1 
                             ? 'Finalizando...' 

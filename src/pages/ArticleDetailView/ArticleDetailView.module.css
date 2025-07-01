@@ -23,6 +23,151 @@
     text-align: justify;
 }
 
+/* Estilos para elementos Markdown */
+.articleDetailViewContent h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    margin: 2rem 0 1rem 0;
+    border-bottom: 3px solid var(--color-secondary);
+    padding-bottom: 0.5rem;
+}
+
+.articleDetailViewContent h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin: 1.8rem 0 1rem 0;
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.3rem;
+}
+
+.articleDetailViewContent h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 1.5rem 0 0.8rem 0;
+}
+
+.articleDetailViewContent strong {
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+.articleDetailViewContent em {
+    font-style: italic;
+    color: var(--color-primary);
+}
+
+.articleDetailViewContent ul,
+.articleDetailViewContent ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.articleDetailViewContent li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+.articleDetailViewContent blockquote {
+    border-left: 4px solid var(--color-secondary);
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+}
+
+.articleDetailViewContent code {
+    background-color: #f4f4f4;
+    color: #e83e8c;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+}
+
+.articleDetailViewContent pre {
+    background-color: #2d3748;
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.articleDetailViewContent pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1em;
+}
+
+.articleDetailViewContent table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.articleDetailViewContent th,
+.articleDetailViewContent td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.articleDetailViewContent th {
+    background-color: var(--color-secondary);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.articleDetailViewContent tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.articleDetailViewContent tr:hover {
+    background-color: #e9ecef;
+}
+
+.articleDetailViewContent hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
+    margin: 2rem 0;
+    border-radius: 1px;
+}
+
+.articleDetailViewContent input[type="checkbox"] {
+    margin-right: 0.5rem;
+    transform: scale(1.2);
+}
+
+.articleDetailViewContent del {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+.articleDetailViewContent a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-secondary);
+    transition: all 0.3s ease;
+}
+
+.articleDetailViewContent a:hover {
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+}
+
 .articleDetailViewSection {
     padding: 5.5rem 17rem;
 }
