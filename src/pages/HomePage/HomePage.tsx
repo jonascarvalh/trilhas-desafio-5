@@ -91,7 +91,7 @@ const HomePage: React.FC = () => {
         <div className={styles.stepByStepCards}>
           <div className={styles.stepByStepCardGroup}>
             <div className={styles.stepByStepCard}><p>1. Leia Artigos</p></div>
-            <div className={styles.stepByStepCard}><p>2. Responda ás perguntas.</p></div>
+            <div className={styles.stepByStepCard}><p>2. Responda às perguntas.</p></div>
           </div>
           <div className={styles.stepByStepCardGroup}>
             <div className={styles.stepByStepCard}><p>3. Ganhe XP e insígnias.</p></div>

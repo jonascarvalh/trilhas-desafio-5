@@ -254,12 +254,22 @@
         padding: 0.9rem 1.8rem;
         width: 300px;
     }
+
+    .pathViewButton {
+        font-size: 1.1rem;
+        padding: 0.8rem 1.5rem;
+    }
 }
 
 /* Responsividade para tablets */
 @media (max-width: 768px) {
     .articleDetailViewSection {
         padding: 3rem 2rem;
+    }
+
+    .articleDetailViewButtons {
+        flex-direction: column-reverse;
+        gap: 0.1rem;
     }
 
     .sectionTitle {
@@ -279,6 +289,11 @@
         font-size: 1rem;
         padding: 0.8rem 1.5rem;
         width: 280px;
+    }
+
+    .pathViewButton {
+        font-size: 1rem;
+        padding: 1rem 1.6rem;
     }
 }
 
@@ -307,6 +322,11 @@
         width: 250px;
         margin-top: 1.5rem;
     }
+
+    .pathViewButton {
+        font-size: 1rem;
+        padding: 1rem 1.6rem;
+    }
 }
 
 /* Responsividade para telas muito pequenas */
@@ -333,5 +353,10 @@
         padding: 0.6rem 1rem;
         width: 220px;
         margin-top: 1rem;
+    }
+
+    .pathViewButton {
+        font-size: 0.8rem;
+        padding: 1rem 1.6rem;
     }
 }
