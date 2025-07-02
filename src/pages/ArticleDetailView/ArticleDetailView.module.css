@@ -121,13 +121,18 @@
     border-bottom: 1px solid #ddd;
 }
 
+.articleDetailViewContent table th,
 .articleDetailViewContent th {
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary) !important;
     color: white !important;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.9em;
     letter-spacing: 0.5px;
+}
+
+.articleDetailViewContent table th strong {
+    color: white !important;
 }
 
 .articleDetailViewContent tr:nth-child(even) {
