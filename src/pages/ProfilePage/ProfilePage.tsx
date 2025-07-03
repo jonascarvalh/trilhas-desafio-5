@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import styles from './ProfilePage.module.css';
-import profileImage from 'assets/ProfilePage/default-profile.svg';
+import profileImage from 'assets/ProfilePage/profile.png';
 import { getUserData, getUserProgress, getUserBadges } from '../../services/userService';
 import type { UserData, UserProgress, UserBadge } from '../../services/userService';
 
@@ -104,7 +104,7 @@ const ProfilePage: React.FC = () => {
             <section className={styles.profileSection}>
                 <div className={styles.profilePage}>
                     <div>
-                        <img src={profileImage} alt="Profile" width="350" height="350" />
+                        <img src={profileImage} alt="Profile" />
                     </div>
                     <div className={styles.profileInfoContainer}>
                         <div className={styles.profileInfo}>
